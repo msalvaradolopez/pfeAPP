@@ -1,0 +1,62 @@
+<style>
+    a {
+    line-height: 1em;
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px;
+}
+
+    .trow {
+      transition: transform .2s;
+    }
+  
+    .trow:hover {
+      cursor: pointer;
+      transform: scale(1.03);
+      background: #e3e6e9;
+      color: black;
+    }
+  
+    .trowColorLetra {
+      color: gray;
+      font-size: calc(.5em + .5vw);
+    }
+  </style>
+  
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Empresas</h1>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="list-group">
+        <a *ngFor="let item of rows" (click)="editRow(item.IDEMPRESA)"
+          class="list-group-item list-group-item-action trow">
+          <div class="row">
+            <div class="col-lg-11 col-sm-6">
+              <strong>
+                <h5 class="mb-1">{{ item.IDEMPRESA + ' ' + item.RAZONSOCIAL}}</h5>
+              </strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 trowColorLetra">
+                {{ "RFC: "+ item.RFC + " / CONTACTO: " + item.NOMCONTACTO + " / EMAIL: " + item.EMAILCONTACTO + " / TELEFONO: " + item.TELEFONO + " / ESTATUS: " + item.ESTATUS}}
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+    
+
+  

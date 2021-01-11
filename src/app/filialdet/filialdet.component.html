@@ -1,0 +1,125 @@
+<style>
+    .botonSize {
+        width: 100%;
+    }
+</style>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">{{_TITULO}}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" [formGroup]="validaCaptura" autocomplete="off">
+                        <div class="card-body">
+                            <div class="form-group row">
+
+                                <label for="IDFILIAL" class="col-2 col-form-label">ID FILAIL</label>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="IDFILIAL"
+                                        [class.is-invalid]="validaCampo('IDFILIAL')" formControlName="IDFILIAL">
+                                    <div *ngIf="validaCampo('IDFILIAL')">
+                                        <small style="color: red;">{{mensajeErrorCampo('IDFILIAL')}}</small>
+                                    </div>
+                                </div>
+                                 
+                                <label *ngIf="_ROL=='M'" for="IDEMPRESA" class="col-2 col-form-label">ID EMPRESA</label>
+                                <div *ngIf="_ROL=='M'" class="col-6">
+                                    <input type="text" class="form-control" id="IDEMPRESA"
+                                        [class.is-invalid]="validaCampo('IDEMPRESA')" formControlName="IDEMPRESA">
+                                    <div *ngIf="validaCampo('IDEMPRESA')">
+                                        <small style="color: red;">{{mensajeErrorCampo('IDEMPRESA')}}</small>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group row">
+                                <label for="RAZONSOCIAL" class="col-sm-2 col-form-label">RAZON SOCIAL</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="RAZONSOCIAL"
+                                        [class.is-invalid]="validaCampo('RAZONSOCIAL')" formControlName="RAZONSOCIAL">
+                                    <div *ngIf="validaCampo('RAZONSOCIAL')">
+                                        <small style="color: red;">{{mensajeErrorCampo('RAZONSOCIAL')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="RFC" class="col-sm-2 col-form-label">RFC</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="RFC"
+                                        [class.is-invalid]="validaCampo('RFC')" formControlName="RFC">
+                                    <div *ngIf="validaCampo('RFC')">
+                                        <small style="color: red;">{{mensajeErrorCampo('RFC')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="TELEFONO" class="col-sm-2 col-form-label">TELEFONO</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="TELEFONO"
+                                        [class.is-invalid]="validaCampo('TELEFONO')" formControlName="TELEFONO">
+                                    <div *ngIf="validaCampo('TELEFONO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('TELEFONO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="EMAILCONTACTO" class="col-sm-2 col-form-label">EMAIL CONTACTO</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="EMAILCONTACTO"
+                                        [class.is-invalid]="validaCampo('EMAILCONTACTO')" formControlName="EMAILCONTACTO">
+                                    <div *ngIf="validaCampo('EMAILCONTACTO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('EMAILCONTACTO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="EMAILPAGOS" class="col-sm-2 col-form-label">EMAIL PAGOS</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="EMAILPAGOS"
+                                        [class.is-invalid]="validaCampo('EMAILCONTACTO')" formControlName="EMAILPAGOS">
+                                    <div *ngIf="validaCampo('EMAILPAGOS')">
+                                        <small style="color: red;">{{mensajeErrorCampo('EMAILPAGOS')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="EMAILREVISION" class="col-sm-2 col-form-label">EMAIL REVISION</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="EMAILREVISION"
+                                        [class.is-invalid]="validaCampo('EMAILREVISION')" formControlName="EMAILREVISION">
+                                    <div *ngIf="validaCampo('EMAILREVISION')">
+                                        <small style="color: red;">{{mensajeErrorCampo('EMAILREVISION')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-4 col-md-2">
+                                    <button type="submit" (click)="goBack()"
+                                        class="btn btn-default float-right botonSize">Salir</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+
+    <!-- <ngx-confirm-box (confirmEvt)="confirmChange($event)"></ngx-confirm-box> -->
+    <ngx-confirm-box [bgColor]="bgColor" [confirmHeading]="confirmHeading" [confirmCanceltext]="confirmCanceltext"
+        [confirmContent]="confirmContent" [confirmOkaytext]="confirmOkaytext" (confirmEvt)="delDatos($event)">
+    </ngx-confirm-box>
+</section>

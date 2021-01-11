@@ -1,0 +1,260 @@
+<style>
+    .botonSize {
+        width: 100%;
+    }
+</style>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">{{_TITULO}}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" [formGroup]="validaCaptura" autocomplete="off">
+                        <div class="card-body">
+                            <div class="form-group row">
+
+                                <label for="IDPROVEEDOR" class="col-2 col-form-label">ID PROVEEDOR</label>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" id="IDPROVEEDOR"
+                                        [class.is-invalid]="validaCampo('IDPROVEEDOR')" formControlName="IDPROVEEDOR">
+                                    <div *ngIf="validaCampo('IDPROVEEDOR')">
+                                        <small style="color: red;">{{mensajeErrorCampo('IDPROVEEDOR')}}</small>
+                                    </div>
+                                </div>
+                                 
+                                <label *ngIf="_ROL=='M'" for="IDEMPRESA" class="col-2 col-form-label">ID EMPRESA</label>
+                                <div *ngIf="_ROL=='M'" class="col-6">
+                                    <input type="text" class="form-control" id="IDEMPRESA"
+                                        [class.is-invalid]="validaCampo('IDEMPRESA')" formControlName="IDEMPRESA">
+                                    <div *ngIf="validaCampo('IDEMPRESA')">
+                                        <small style="color: red;">{{mensajeErrorCampo('IDEMPRESA')}}</small>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group row">
+                                <label for="RAZONSOCIAL" class="col-sm-2 col-form-label">RAZON SOCIAL</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="RAZONSOCIAL"
+                                        [class.is-invalid]="validaCampo('RAZONSOCIAL')" formControlName="RAZONSOCIAL">
+                                    <div *ngIf="validaCampo('RAZONSOCIAL')">
+                                        <small style="color: red;">{{mensajeErrorCampo('RAZONSOCIAL')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="RFC" class="col-sm-2 col-form-label">RFC</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="RFC"
+                                        [class.is-invalid]="validaCampo('RFC')" formControlName="RFC">
+                                    <div *ngIf="validaCampo('RFC')">
+                                        <small style="color: red;">{{mensajeErrorCampo('RFC')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="TIPOPROV" class="col-sm-2 col-form-label">TIPO PROVEDOR</label>
+                                <div class="col-sm-2">
+                                    <!-- select -->
+                                    <select class="form-control" id="TIPOPROV"
+                                        [class.is-invalid]="validaCampo('TIPOPROV')" formControlName="TIPOPROV">
+                                        <option [value]="item.ID" *ngFor="let item of _TIPOPROV">{{item.NOMBRE}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="validaCampo('TIPOPROV')">
+                                        <small style="color: red;">{{mensajeErrorCampo('TIPOPROV')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="CURP" class="col-sm-2 col-form-label">CURP</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="CURP"
+                                        [class.is-invalid]="validaCampo('CURP')" formControlName="CURP">
+                                    <div *ngIf="validaCampo('CURP')">
+                                        <small style="color: red;">{{mensajeErrorCampo('CURP')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="TIPOPAGO" class="col-sm-2 col-form-label">TIPO PAGO</label>
+                                <div class="col-sm-2">
+                                    <!-- select -->
+                                    <select class="form-control" id="TIPOPAGO"
+                                        [class.is-invalid]="validaCampo('TIPOPAGO')" formControlName="TIPOPAGO">
+                                        <option [value]="item.ID" *ngFor="let item of _TIPOPAGO">{{item.NOMBRE}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="validaCampo('TIPOPAGO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('TIPOPAGO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="DIASCREDITO" class="col-sm-2 col-form-label">DIAS CREDITO</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="DIASCREDITO"
+                                        [class.is-invalid]="validaCampo('DIASCREDITO')" formControlName="DIASCREDITO">
+                                    <div *ngIf="validaCampo('DIASCREDITO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('DIASCREDITO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5>FACTURACION</h5>
+                            <hr size="10px" width="80%" noshade="noshade" align="left" />
+                            
+                            <div class="form-group row">
+                                <label for="TIPOVENCE" class="col-sm-2 col-form-label">TIPO VENCE</label>
+                                <div class="col-sm-2">
+                                    <!-- select -->
+                                    <select class="form-control" id="TIPOVENCE"
+                                        [class.is-invalid]="validaCampo('TIPOPAGO')" formControlName="TIPOVENCE">
+                                        <option [value]="item.ID" *ngFor="let item of _TIPOVENCE">{{item.NOMBRE}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="validaCampo('TIPOVENCE')">
+                                        <small style="color: red;">{{mensajeErrorCampo('TIPOVENCE')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="CLAVEPROV" class="col-sm-2 col-form-label">CLAVE PROVEEDOR</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="CLAVEPROV"
+                                        [class.is-invalid]="validaCampo('CLAVEPROV')" formControlName="CLAVEPROV">
+                                    <div *ngIf="validaCampo('CLAVEPROV')">
+                                        <small style="color: red;">{{mensajeErrorCampo('CLAVEPROV')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="CLAVEPROD" class="col-sm-2 col-form-label">CLAVE PRODUCTO</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="CLAVEPROD"
+                                        [class.is-invalid]="validaCampo('CLAVEPROD')" formControlName="CLAVEPROD">
+                                    <div *ngIf="validaCampo('CLAVEPROD')">
+                                        <small style="color: red;">{{mensajeErrorCampo('CLAVEPROD')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5>CONTACTO</h5>
+                            <hr size="10px" width="80%" noshade="noshade" align="left" />
+
+                            <div class="form-group row">
+                                <label for="NOMCONTACTO" class="col-sm-2 col-form-label">NOMBRE CONTACTO</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="NOMCONTACTO"
+                                        [class.is-invalid]="validaCampo('NOMCONTACTO')" formControlName="NOMCONTACTO">
+                                    <div *ngIf="validaCampo('NOMCONTACTO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('NOMCONTACTO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="APPCONTACTO" class="col-sm-2 col-form-label">APELLIDO PATERNO</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="APPCONTACTO"
+                                        [class.is-invalid]="validaCampo('APPCONTACTO')" formControlName="APPCONTACTO">
+                                    <div *ngIf="validaCampo('APPCONTACTO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('APPCONTACTO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="APMCONTACTO" class="col-sm-2 col-form-label">APELLIDO MATERNO</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="APMCONTACTO"
+                                        [class.is-invalid]="validaCampo('APMCONTACTO')" formControlName="APMCONTACTO">
+                                    <div *ngIf="validaCampo('APMCONTACTO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('APMCONTACTO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="EMAILPROV" class="col-sm-2 col-form-label">EMAIL CONTACTO</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" id="EMAILPROV"
+                                        [class.is-invalid]="validaCampo('EMAILPROV')" formControlName="EMAILPROV">
+                                    <div *ngIf="validaCampo('EMAILPROV')">
+                                        <small style="color: red;">{{mensajeErrorCampo('EMAILPROV')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="TELEFONO" class="col-sm-2 col-form-label">TELEFONO</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="TELEFONO"
+                                        [class.is-invalid]="validaCampo('TELEFONO')" formControlName="TELEFONO">
+                                    <div *ngIf="validaCampo('TELEFONO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('TELEFONO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5>PORTAL</h5>
+                            <hr size="10px" width="80%" noshade="noshade" align="left" />
+
+                            <div class="form-group row">
+                                <label for="IDUSUARIO" class="col-sm-2 col-form-label">USUARIO</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="IDUSUARIO"
+                                        [class.is-invalid]="validaCampo('IDUSUARIO')" formControlName="IDUSUARIO">
+                                    <div *ngIf="validaCampo('IDUSUARIO')">
+                                        <small style="color: red;">{{mensajeErrorCampo('IDUSUARIO')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr size="10px" width="80%" noshade="noshade" align="left" />
+
+                            <div class="form-group row">
+                                <label for="ESTATUS" class="col-sm-2 col-form-label">ESTATUS</label>
+                                <div class="col-sm-2">
+                                    <!-- select -->
+                                    <select class="form-control" id="ESTATUS"
+                                        [class.is-invalid]="validaCampo('ESTATUS')" formControlName="ESTATUS">
+                                        <option [value]="item.IDTIPO" *ngFor="let item of estatus">{{item.NOMBRE}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="validaCampo('ESTATUS')">
+                                        <small style="color: red;">{{mensajeErrorCampo('ESTATUS')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-4 col-md-2">
+                                    <button type="submit" (click)="goBack()"
+                                        class="btn btn-default float-right botonSize">Salir</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+
+    <!-- <ngx-confirm-box (confirmEvt)="confirmChange($event)"></ngx-confirm-box> -->
+    <ngx-confirm-box [bgColor]="bgColor" [confirmHeading]="confirmHeading" [confirmCanceltext]="confirmCanceltext"
+        [confirmContent]="confirmContent" [confirmOkaytext]="confirmOkaytext" (confirmEvt)="delDatos($event)">
+    </ngx-confirm-box>
+</section>
